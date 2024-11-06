@@ -9,7 +9,7 @@ jobs:
       matrix:
         platform:
           - kinesis
-          # - kafka
+          - kafka
         include:
           - suffix: ""
     steps:
@@ -20,11 +20,6 @@ jobs:
         with:
           java-version: 11
           distribution: 'corretto'
-      - name: Get current version
-        id: ver
-        run: |
-          export PROJECT_VERSION=$(sbt "project core" version -Dsbt.log.noformat=true | perl -ne 'print "$1\n" if /info.*(\d+\.\d+\.\d+[^\r\n]*)/' | tail -n 1 | tr -d '\n')
-          echo "project_version=$PROJECT_VERSION" >> $GITHUB_OUTPUT
       - name: Docker:stage
         run: sbt "project ${{ matrix.platform }}" docker:stage
       - name: Set up Docker Buildx
