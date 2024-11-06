@@ -1,9 +1,6 @@
 name: build
 
-on:
-  push:
-    tags:
-      - '*'
+on: workflow_dispatch
 
 permissions:
   contents: write # to publish artifacts

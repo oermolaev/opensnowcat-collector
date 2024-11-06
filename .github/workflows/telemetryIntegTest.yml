@@ -1,6 +1,6 @@
 name: telemetryIntegTest
 
-on: push
+on: workflow_dispatch
 
 jobs:
   integ_test:

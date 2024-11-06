@@ -1,6 +1,6 @@
 name: Test cookieless tracking
 
-on: push
+on: workflow_dispatch
 
 jobs:
   run_test:
