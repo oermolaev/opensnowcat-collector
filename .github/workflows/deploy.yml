@@ -89,7 +89,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: oermolaev/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}
+          images: opensnowcat/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}
           tags: |
             type=raw,value=latest,enable=${{ !contains(steps.ver.outputs.project_version, 'rc') }}
             type=raw,value=latest-focal,enable=${{ !contains(steps.ver.outputs.project_version, 'rc') }}
@@ -102,7 +102,7 @@ jobs:
         id: distroless-meta
         uses: docker/metadata-action@v5
         with:
-          images: oermolaev/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}
+          images: opensnowcat/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}
           tags: |
             type=raw,value=latest-distroless,enable=${{ !contains(steps.ver.outputs.project_version, 'rc') }}
             type=raw,value=${{ steps.ver.outputs.project_version }}-distroless
@@ -131,6 +131,8 @@ jobs:
           # tags: ${{ steps.meta.outputs.tags }}
           tags: ghcr.io/${{ github.repository }}/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}:latest
           push: true
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
       - name: Push distroless image
         uses: docker/build-push-action@v6
@@ -141,3 +143,5 @@ jobs:
           # tags: ${{ steps.distroless-meta.outputs.tags }}
           tags: ghcr.io/${{ github.repository }}/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}:latest-distroless
           push: true
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
