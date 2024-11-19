@@ -89,7 +89,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: opensnowcat/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}
+          images: oermolaev/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}
           tags: |
             type=raw,value=latest,enable=${{ !contains(steps.ver.outputs.project_version, 'rc') }}
             type=raw,value=latest-focal,enable=${{ !contains(steps.ver.outputs.project_version, 'rc') }}
@@ -102,7 +102,7 @@ jobs:
         id: distroless-meta
         uses: docker/metadata-action@v5
         with:
-          images: opensnowcat/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}
+          images: oermolaev/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}
           tags: |
             type=raw,value=latest-distroless,enable=${{ !contains(steps.ver.outputs.project_version, 'rc') }}
             type=raw,value=${{ steps.ver.outputs.project_version }}-distroless
