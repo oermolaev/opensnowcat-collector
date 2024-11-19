@@ -129,7 +129,7 @@ jobs:
           file: ${{ matrix.platform }}/target/docker/stage/Dockerfile
           platforms: linux/amd64,linux/arm64/v8
           # tags: ${{ steps.meta.outputs.tags }}
-          tags: "ghcr.io/${{ github.repository }}/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}:latest"
+          tags: ghcr.io/${{ github.repository }}/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}:latest
           push: true
 
       - name: Push distroless image
@@ -139,5 +139,5 @@ jobs:
           file: distroless/${{ matrix.platform }}/target/docker/stage/Dockerfile
           platforms: linux/amd64,linux/arm64/v8
           # tags: ${{ steps.distroless-meta.outputs.tags }}
-          tags: "ghcr.io/${{ github.repository }}/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}:latest-distroless"
+          tags: ghcr.io/${{ github.repository }}/opensnowcat-collector-${{ matrix.platform }}${{ matrix.suffix }}:latest-distroless
           push: true
